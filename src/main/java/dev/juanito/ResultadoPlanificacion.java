@@ -5,9 +5,9 @@ import java.util.List;
 public class ResultadoPlanificacion {
     private List<Proceso> listaProcesos;
     private List<Ejecucion> ejecucion;
-    private Integer tiempoMedioEspera;
-    private Integer tiempoMedioRetorno;
-    private Integer tiempoMediaRespuesta;
+    private Double tiempoMedioEspera;
+    private Double tiempoMedioRetorno;
+    private Double tiempoMediaRespuesta;
 
     public List<Proceso> getListaProcesos() {
         return listaProcesos;
@@ -21,23 +21,41 @@ public class ResultadoPlanificacion {
     public void setEjecucion(List<Ejecucion> ejecucion) {
         this.ejecucion = ejecucion;
     }
-    public Integer getTiempoMedioEspera() {
+    public Double getTiempoMedioEspera() {
         return tiempoMedioEspera;
     }
-    public void setTiempoMedioEspera(Integer tiempoMedioEspera) {
+    public void setTiempoMedioEspera(Double tiempoMedioEspera) {
         this.tiempoMedioEspera = tiempoMedioEspera;
     }
-    public Integer getTiempoMedioRetorno() {
+    public Double getTiempoMedioRetorno() {
         return tiempoMedioRetorno;
     }
-    public void setTiempoMedioRetorno(Integer tiempoMedioRetorno) {
+    public void setTiempoMedioRetorno(Double tiempoMedioRetorno) {
         this.tiempoMedioRetorno = tiempoMedioRetorno;
     }
-    public Integer getTiempoMediaRespuesta() {
+    public Double getTiempoMediaRespuesta() {
         return tiempoMediaRespuesta;
     }
-    public void setTiempoMediaRespuesta(Integer tiempoMediaRespuesta) {
+    public void setTiempoMediaRespuesta(Double tiempoMediaRespuesta) {
         this.tiempoMediaRespuesta = tiempoMediaRespuesta;
+    }
+
+    public void calcularPromedios() {
+        Double promedioRetorno = 0.0;
+        Double promedioEspera = 0.0;
+        Double promedioRespuesta = 0.0;
+        
+        for (Proceso p : listaProcesos) {
+            promedioRetorno += p.getTiempoRetorno();
+            promedioEspera += p.getTiempoEspera();
+            promedioRespuesta += p.getTiempoRespuesta();
+        }
+
+        int numeroProcesos = listaProcesos.size();
+
+        setTiempoMedioRetorno(promedioRetorno / numeroProcesos);
+        setTiempoMedioEspera(promedioEspera / numeroProcesos);
+        setTiempoMediaRespuesta(promedioRespuesta / numeroProcesos);
     }
     
 }

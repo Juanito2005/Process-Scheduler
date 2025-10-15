@@ -1,10 +1,13 @@
 package dev.juanito;
 
 public class Proceso {
+    // Atributos de entrada
     private Integer id;
     private Integer tiempoLlegada;
     private Integer duracionCPU;
     private Integer prioridad;
+    private Integer duracionCPUOriginal;
+    private Integer duracionCPURestante;
     // Atributos de salida
     private Integer tiempoInicioAb;
     private Integer tiempoFinAb;
@@ -12,48 +15,37 @@ public class Proceso {
     private Integer tiempoRetorno;
     private Integer tiempoRespuesta;
 
+    // Constructor para hacer una deepCopy de esta clase
+     /*
+        Para que esto funcione debe cumplir estas condiciones:
+        1. Existir un constructor base con los atributos que quieres clonar
+        2. En la clase que vas a clonar, hacer un bucle for que asigne cada
+        atributo de la instancia original a la clase clon
+     */
+    
+    // The primary constructor for creating a new process
     public Proceso(Integer id, Integer tiempoLlegada, Integer duracionCPU, Integer prioridad) {
         this.id = id;
         this.tiempoLlegada = tiempoLlegada;
         this.duracionCPU = duracionCPU;
         this.prioridad = prioridad;
+        this.duracionCPUOriginal = duracionCPU; // Initializes original duration
+        this.duracionCPURestante = duracionCPU; // Initializes remaining duration
     }
 
-    // Constructor para hacer una deepCopy de esta clase
-     /*
-        Para que esto funcione debe cumplir estas condiciones:
-        1. Existir un constructor base con los atributos que quieres clonar
-        2. En la clase que la vas a clonar, hacer un bucle for que asigne cada
-        atributo de la instancia original a la clase clon
-     */
-    
+    // A copy constructor for creating a deep copy
     public Proceso(Proceso otro) {
         this.id = otro.id;
         this.tiempoLlegada = otro.tiempoLlegada;
         this.duracionCPU = otro.duracionCPU;
         this.prioridad = otro.prioridad;
-    }
-
-    public Proceso(Integer tiempoInicioAb, Integer tiempoFinAb, Integer tiempoEspera, Integer tiempoRetorno,
-            Integer tiempoRespuesta) {
-        this.tiempoInicioAb = tiempoInicioAb;
-        this.tiempoFinAb = tiempoFinAb;
-        this.tiempoEspera = tiempoEspera;
-        this.tiempoRetorno = tiempoRetorno;
-        this.tiempoRespuesta = tiempoRespuesta;
-    }
-
-    public Proceso(Integer id, Integer tiempoLlegada, Integer duracionCPU, Integer prioridad, Integer tiempoInicioAb,
-            Integer tiempoFinAb, Integer tiempoEspera, Integer tiempoRetorno, Integer tiempoRespuesta) {
-        this.id = id;
-        this.tiempoLlegada = tiempoLlegada;
-        this.duracionCPU = duracionCPU;
-        this.prioridad = prioridad;
-        this.tiempoInicioAb = tiempoInicioAb;
-        this.tiempoFinAb = tiempoFinAb;
-        this.tiempoEspera = tiempoEspera;
-        this.tiempoRetorno = tiempoRetorno;
-        this.tiempoRespuesta = tiempoRespuesta;
+        this.duracionCPUOriginal = otro.duracionCPUOriginal;
+        this.duracionCPURestante = otro.duracionCPURestante;
+        this.tiempoInicioAb = otro.tiempoInicioAb;
+        this.tiempoFinAb = otro.tiempoFinAb;
+        this.tiempoEspera = otro.tiempoEspera;
+        this.tiempoRetorno = otro.tiempoRetorno;
+        this.tiempoRespuesta = otro.tiempoRespuesta;
     }
 
 
@@ -111,4 +103,21 @@ public class Proceso {
     public void setTiempoRespuesta(Integer tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
     }
+
+    public Integer getDuracionCPU_original() {
+        return duracionCPUOriginal;
+    }
+
+    public void setDuracionCPU_original(Integer duracionCPU_original) {
+        this.duracionCPUOriginal = duracionCPU_original;
+    }
+
+    public Integer getDuracionCPU_restante() {
+        return duracionCPURestante;
+    }
+
+    public void setDuracionCPU_restante(Integer duracionCPU_restante) {
+        this.duracionCPURestante = duracionCPU_restante;
+    }
+    
 }
